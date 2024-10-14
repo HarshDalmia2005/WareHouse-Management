@@ -1,8 +1,9 @@
 import React, { useState,useEffect } from 'react';
+import Log from './Login.jpg'
 
 function Login({ LoggedIn, setLoggedIn, openLogin, setopenLogin }) {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('harsh@gmail.com');
+    const [password, setPassword] = useState('Harsh@2005');
     const [message, setMessage] = useState('');
 
     const handleLogin = async (e) => {
@@ -36,15 +37,16 @@ function Login({ LoggedIn, setLoggedIn, openLogin, setopenLogin }) {
    
 
     return (
-        <div className="login-container">
-            <h2>Login</h2>
-            <form onSubmit={handleLogin}>
+        <div className="login-container bg-[#BBD686] min-h-screen flex flex-col justify-center items-center">
+            <h2 className='text-center text-6xl font-bold mb-10'>Login Page</h2>
+            <form onSubmit={handleLogin} className='h-96 bg-white rounded-2xl p-5 flex flex-col w-1/3 mx-auto '>
                 <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Email"
                     required
+                    className='p-2 px-5 rounded-3xl border border-black outline-none mt-10 w-[80%] mx-auto'
                 />
                 <input
                     type="password"
@@ -52,9 +54,10 @@ function Login({ LoggedIn, setLoggedIn, openLogin, setopenLogin }) {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password"
                     required
+                    className='p-2 px-5 rounded-3xl border border-black outline-none mt-10 w-[80%] mx-auto'
                 />
-                <button type="submit">Login</button>
-                <button>Back to main page</button>
+                <button type="submit" className='p-2 rounded-3xl bg-[#DA8E42] text-white font-bold mt-10 w-[80%] mx-auto'>Login</button>
+                <button className='p-2 rounded-3xl bg-[#B2675E] text-white font-bold mt-5 w-[80%] mx-auto' onClick={(e)=>setopenLogin(false)}>Back to main page</button>
             </form>
             <div>{message}</div>
         </div>
