@@ -1,0 +1,66 @@
+.app {
+  display: flex;
+  color: black;
+}
+
+.sidebar-section {
+  width: 300px;
+  /* background-color: #f8f9fa; */
+  border-right: 1px solid #ddd;
+  padding: 20px;
+}
+
+.main-section {
+  flex: 1;
+  padding: 20px;
+}
+
+.expandable-section {
+  margin-bottom: 10px;
+}
+
+.expandable-label {
+  /* font-weight: bold; */
+  cursor: pointer;
+  padding: 5px;
+  background-color: #e0e0e0;
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
+
+.expandable-content {
+  padding-left: 20px;
+}
+
+.no-sub-godowns, .no-items {
+  color: #888;
+}
+
+.items-list .item {
+  cursor: pointer;
+  padding: 5px 0;
+}
+
+.item-details {
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.item-details h1 {
+  margin-bottom: 10px;
+}
+
+.item-details img {
+  max-width: 200px;
+  margin-bottom: 10px;
+}
+
+.item-details p, .item-details ul {
+  margin: 5px 0;
+}
+
+.item-details ul {
+  list-style: none;
+  padding-left: 0;
+}
