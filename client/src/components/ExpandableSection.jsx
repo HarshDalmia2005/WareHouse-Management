@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import open from './folder.png'
-import closed from'./folder-closed-black-shape.png'
+
 const ExpandableSection = ({ godown, onSelectItem }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -9,16 +8,16 @@ const ExpandableSection = ({ godown, onSelectItem }) => {
     };
 
     return (
-        <div className="expandable-section">
-            <div onClick={toggleExpand} className="expandable-label">
-                <div className='flex'>
+        <div className="expandable-section text-white font-bold">
+            <div onClick={toggleExpand} className={`expandable-label hover:bg-[#715344]`}>
+                <div className='flex space-x-2'>
                
-            {isExpanded ? <img src={open} style={{width:"1rem"}}/> : <img src={closed} style={{width:"1rem"}}/>} </div><p>{godown.name}</p>
+            {isExpanded ? <p> &#128899;</p> :<p> &#128898;</p>}<p>{godown.name}</p> </div>
             </div>
 
             {isExpanded && (
                 <div className="expandable-content">
-                    {/* Display Sub-locations if present */}
+                
                     {godown.subLocations && godown.subLocations.length > 0 ? (
                         godown.subLocations.map(subGodown => (
                             <ExpandableSection
@@ -28,7 +27,7 @@ const ExpandableSection = ({ godown, onSelectItem }) => {
                             />
                         ))
                     ) : (
-                        /* If no sub-locations, display items */
+                       
                         godown.items && godown.items.length > 0 ? (
                             <div className="items-list">
                                 {godown.items.map(item => (
