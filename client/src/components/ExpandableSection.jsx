@@ -11,7 +11,9 @@ const ExpandableSection = ({ godown, onSelectItem }) => {
     return (
         <div className="expandable-section">
             <div onClick={toggleExpand} className="expandable-label">
-            {isExpanded ? <img src={open} style={{width:"1rem"}}/> : <img src={closed} style={{width:"1rem"}}/>} <p>{godown.name}</p>
+                <div className='flex'>
+               
+            {isExpanded ? <img src={open} style={{width:"1rem"}}/> : <img src={closed} style={{width:"1rem"}}/>} </div><p>{godown.name}</p>
             </div>
 
             {isExpanded && (
