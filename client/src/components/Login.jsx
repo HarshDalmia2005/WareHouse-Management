@@ -7,8 +7,8 @@ import './Login.css'
 import { BrowserRouter as Router, Route, Routes, Navigate,Link,useNavigate } from 'react-router-dom';
 
 function Login({ LoggedIn, setLoggedIn}) {
-    const [email, setEmail] = useState('harshita@gmail.com');
-    const [password, setPassword] = useState('Harshita@2005');
+    const [email, setEmail] = useState('harsh@gmail.com');
+    const [password, setPassword] = useState('Harsh@2005');
     const [message, setMessage] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
