@@ -25,6 +25,12 @@ const ExpandableSection = ({ godown, onSelectItem, searchQuery, searchLocations,
 
     const shouldBeDisplayed = filteredItems.length > 0 || filteredSubLocations.length > 0 || godown.name.toLowerCase().includes(searchLocations.toLowerCase());
 
+    useEffect(() => {
+        if ((searchQuery.length>0) || filterCategory!=="All") {
+            setIsExpanded(true);
+        }
+    }, [searchQuery,filterCategory]);
+
  
     if (searchLocations && (filteredSubLocations.length > 0)) {
        console.log(filteredSubLocations)
