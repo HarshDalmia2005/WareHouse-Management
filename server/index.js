@@ -61,15 +61,15 @@ const User = mongoose.model('User', UserSchema);
 const Location = mongoose.model('Location', LocationSchema);
 const Item = mongoose.model('Item', ItemSchema);
 
-const createUser = async () => {
-    const newUser = new User({
-        email: 'harsh@gmail.com',
-        password: 'Harsh@2005' 
-    });
-    await newUser.save();
-    console.log('User created:', newUser);
-};
-createUser();
+// const createUser = async () => {
+//     const newUser = new User({
+//         email: 'harsh@gmail.com',
+//         password: 'Harsh@2005' 
+//     });
+//     await newUser.save();
+//     console.log('User created:', newUser);
+// };
+// createUser();
 
 
 
