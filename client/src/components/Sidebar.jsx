@@ -36,11 +36,11 @@ const Sidebar = ({ onSelectItem }) => {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/locations')
+        fetch('https://warehouse-management-backend-qxu0.onrender.com/locations')
             .then(res => res.json())
             .then(data => setLocations(data));
        
-        fetch('http://localhost:3000/items')
+        fetch('https://warehouse-management-backend-qxu0.onrender.com/items')
             .then(res => res.json())
             .then(data => setItems(data));
 

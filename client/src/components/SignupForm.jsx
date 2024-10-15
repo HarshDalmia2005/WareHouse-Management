@@ -27,7 +27,7 @@ export default function SignupForm() {
   const handleSubmit = async () => {
     try {
       // Send data to backend
-      const response = await fetch("http://localhost:3000/register", {
+      const response = await fetch("https://warehouse-management-backend-qxu0.onrender.com/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
