@@ -65,7 +65,7 @@ const Sidebar = ({ onSelectItem }) => {
     const godownTree = buildGodownTreeWithItems(locations, items);
    console.log(godownTree)
     return (
-        <div className="sidebar bg-[#644536] md:w-full min-w-screen">
+        <div className="sidebar bg-[#644536] md:w-full min-w-screen max-h-screen overflow-y-scroll">
             <div className="search-bar">
                 <input
                     type="text"
