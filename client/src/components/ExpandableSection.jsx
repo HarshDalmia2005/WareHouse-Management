@@ -11,7 +11,7 @@ const ExpandableSection = ({ godown, onSelectItem }) => {
             <div onClick={toggleExpand} className={`expandable-label hover:bg-[#715344]`}>
                 <div className='flex space-x-2'>
                
-            {isExpanded ? <p> &#128899;</p> :<p> &#128898;</p>}<p>{godown.name}</p> </div>
+            {isExpanded ? <p>🞃</p> :<p> 🞂</p>}<p>{godown.name}</p> </div>
             </div>
 
             {isExpanded && (
