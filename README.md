@@ -19,7 +19,6 @@ It uses a 3-tier architecture:
 
 ### Flowchart
 ![Flowchart](./flowchart.png) 
-*(Insert the system architecture flowchart here)*
 
 ---
 
