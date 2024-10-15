@@ -51,7 +51,7 @@ const Sidebar = ({ onSelectItem }) => {
     const godownTree = buildGodownTreeWithItems(locations, items);
    console.log(godownTree)
     return (
-        <div className="sidebar bg-[#644536] w-full">
+        <div className="sidebar bg-[#644536] md:w-full min-w-screen">
             {godownTree?.map(godown => (
                 <ExpandableSection
                     key={godown.id}
