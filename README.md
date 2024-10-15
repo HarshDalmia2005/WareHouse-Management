@@ -18,7 +18,7 @@ It uses a 3-tier architecture:
 3. **Database**: MongoDB is used for storing user and inventory data, offering a scalable NoSQL solution.
 
 ### Flowchart
-![Flowchart](#) 
+![Flowchart](./flowchart.png) 
 *(Insert the system architecture flowchart here)*
 
 ---
