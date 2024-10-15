@@ -4,13 +4,18 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
 app.use(bodyParser.json());
 app.use(cors())
 
-
-mongoose.connect('mongodb://localhost/godown');
+mongoose.set('strictQuery',false)
+mongoose.connect(process.env.MONGO_URL).then(()=>{
+    console.log("DB connected!!")
+}).catch((err)=>{
+    console.log("error", err)
+});
 
 const LocationSchema = new mongoose.Schema({
     id: String,
@@ -56,15 +61,15 @@ const User = mongoose.model('User', UserSchema);
 const Location = mongoose.model('Location', LocationSchema);
 const Item = mongoose.model('Item', ItemSchema);
 
-// const createUser = async () => {
-//     const newUser = new User({
-//         email: 'harsh@gmail.com',
-//         password: 'Harsh@2005' 
-//     });
-//     await newUser.save();
-//     console.log('User created:', newUser);
-// };
-// createUser();
+const createUser = async () => {
+    const newUser = new User({
+        email: 'harsh@gmail.com',
+        password: 'Harsh@2005' 
+    });
+    await newUser.save();
+    console.log('User created:', newUser);
+};
+createUser();
 
 
 
