@@ -5,10 +5,10 @@ import logo from './warehouse-solid.svg'
 // import './Header.css'
 const Footer = () => {
     return (
-        <footer id="contact" className=" text-black py-8">
+        <footer id="contact" className=" text-black py-8 ">
       
            
-            <div className="container mx-auto  gap-8  border-t-2 py-3 border-black flex justify-between">
+            <div className="container mx-auto  gap-8  border-t-2 py-3 border-black flex md:flex-row flex-col md:justify-between items-center">
               
                 <div className="w-[70%]">
                     <div className="flex">

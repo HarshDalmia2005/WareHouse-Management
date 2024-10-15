@@ -1,11 +1,17 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Log from './Login.jpg'
+import img from './Login.png'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import './Login.css'
+import { BrowserRouter as Router, Route, Routes, Navigate,Link,useNavigate } from 'react-router-dom';
 
-function Login({ LoggedIn, setLoggedIn, openLogin, setopenLogin }) {
-    const [email, setEmail] = useState('harsh@gmail.com');
-    const [password, setPassword] = useState('Harsh@2005');
+function Login({ LoggedIn, setLoggedIn}) {
+    const [email, setEmail] = useState('harshita@gmail.com');
+    const [password, setPassword] = useState('Harshita@2005');
     const [message, setMessage] = useState('');
-
+    const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
     const handleLogin = async (e) => {
         e.preventDefault();
 
@@ -23,7 +29,6 @@ function Login({ LoggedIn, setLoggedIn, openLogin, setopenLogin }) {
             if (response.ok) {
                 setMessage(data.message);
                 setLoggedIn(true);
-                setopenLogin(false);
                 localStorage.setItem('token', data.token);
             } else {
                 setMessage(data.error || 'Login failed. Please try again.');
@@ -33,33 +38,51 @@ function Login({ LoggedIn, setLoggedIn, openLogin, setopenLogin }) {
         }
     };
 
-
+   useEffect(() => {
+     if(LoggedIn){
+        navigate("/")
+     }
+   
+   }, [LoggedIn,setLoggedIn])
    
 
+
     return (
-        <div className="login-container bg-[#BBD686] min-h-screen flex flex-col justify-center items-center">
-            <h2 className='text-center text-6xl font-bold mb-10'>Login Page</h2>
-            <form onSubmit={handleLogin} className='h-96 bg-white rounded-2xl p-5 flex flex-col w-1/3 mx-auto '>
-                <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Email"
-                    required
-                    className='p-2 px-5 rounded-3xl border border-black outline-none mt-10 w-[80%] mx-auto'
-                />
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Password"
-                    required
-                    className='p-2 px-5 rounded-3xl border border-black outline-none mt-10 w-[80%] mx-auto'
-                />
-                <button type="submit" className='p-2 rounded-3xl bg-[#DA8E42] text-white font-bold mt-10 w-[80%] mx-auto'>Login</button>
-                <button className='p-2 rounded-3xl bg-[#B2675E] text-white font-bold mt-5 w-[80%] mx-auto' onClick={(e)=>setopenLogin(false)}>Back to main page</button>
-            </form>
-            <div>{message}</div>
+        <div className="login-main flex md:flex-row flex-col">
+            <div className="login-left">
+                <img src={img} alt="Login Background" />
+            </div>
+            <div className="login-right">
+                <div className="login-right-container">
+                    <div className="login-center">
+                        <h2>Welcome back!</h2>
+                        <p>Please enter your details</p>
+                        <form onSubmit={handleLogin}>
+                            <input type="email" placeholder="Email" name="email"  value={email} required />
+                            <div className="pass-input-div">
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    placeholder="Password"
+                                    name="password"
+                                    value={password}
+                                    required
+                                />
+                                <FontAwesomeIcon
+                                    icon={showPassword ? faEyeSlash : faEye}
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="password-toggle-icon"
+                                />
+                            </div>
+                            <div className="login-center-buttons">
+                                <button type="submit">Log In</button>
+                            </div>
+                        </form>
+                    </div>
+                    <p className="login-bottom-p">
+                        Don't have an account?<Link to="/signup"> Sign Up</Link>
+                    </p>
+                </div>
+            </div>
         </div>
     );
 }

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 const ExpandableSection = ({ godown, onSelectItem }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -17,7 +16,7 @@ const ExpandableSection = ({ godown, onSelectItem }) => {
 
             {isExpanded && (
                 <div className="expandable-content">
-                
+                    {/* Display Sub-locations if present */}
                     {godown.subLocations && godown.subLocations.length > 0 ? (
                         godown.subLocations.map(subGodown => (
                             <ExpandableSection
@@ -27,7 +26,7 @@ const ExpandableSection = ({ godown, onSelectItem }) => {
                             />
                         ))
                     ) : (
-                       
+                        /* If no sub-locations, display items */
                         godown.items && godown.items.length > 0 ? (
                             <div className="items-list">
                                 {godown.items.map(item => (
