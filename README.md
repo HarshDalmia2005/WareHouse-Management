@@ -21,7 +21,11 @@ It uses a 3-tier architecture:
 
 ### Video Demostration
 
-![Video](./VIDEO.webm)
+<video width="320" height="240" controls>
+  <source src="./VIDEO.webm" type="video/webm">
+  Your browser does not support the video tag.
+</video>
+
 
 ---
 
