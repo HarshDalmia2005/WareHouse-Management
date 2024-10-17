@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
-const ExpandableSection = ({ godown, onSelectItem, searchQuery, searchLocations, filterCategory }) => {
+const ExpandableSection = ({ godown, onSelectItem, searchQuery, searchLocations, filterCategory, onDropItem }) => {
     const [isExpanded, setIsExpanded] = useState(false);
-
 
     const toggleExpand = () => {
         setIsExpanded(!isExpanded);
     };
 
-   
     const filteredItems = godown.items?.filter(item => {
         const matchesSearch = searchQuery === "" || item.name.toLowerCase().includes(searchQuery.toLowerCase());
         const matchesCategory = filterCategory === "All" || item.category === filterCategory;
         return matchesSearch && matchesCategory;
     });
-
 
     const filteredSubLocations = Array.isArray(godown.subLocations)
         ? godown.subLocations.filter(subGodown => 
@@ -23,95 +20,70 @@ const ExpandableSection = ({ godown, onSelectItem, searchQuery, searchLocations,
             subGodown.subLocations?.some(sub => sub.name.toLowerCase().includes(searchLocations.toLowerCase())))
         : [];
 
-    const shouldBeDisplayed = filteredItems.length > 0 || filteredSubLocations.length > 0 || godown.name.toLowerCase().includes(searchLocations.toLowerCase());
+    const handleDragStart = (event, item) => {
+        event.dataTransfer.setData('item', JSON.stringify(item));
+    };
+
+    const handleDrop = (event) => {
+        const itemData = event.dataTransfer.getData('item');
+        const droppedItem = JSON.parse(itemData);
+        onDropItem(droppedItem, godown.id);  
+    };
+
+    const handleDragOver = (event) => {
+        event.preventDefault();
+    };
 
     useEffect(() => {
-        if ((searchQuery.length>0) || filterCategory!=="All") {
+        if (searchQuery.length > 0 || filterCategory !== "All") {
             setIsExpanded(true);
         }
-    }, [searchQuery,filterCategory]);
+    }, [searchQuery, filterCategory]);
 
- 
-    if (searchLocations && (filteredSubLocations.length > 0)) {
-       console.log(filteredSubLocations)
-        return (
-            <>
-                {filteredSubLocations.map(subGodown => (
-                    <ExpandableSection
-                        key={subGodown.id}
-                        godown={subGodown}
-                        onSelectItem={onSelectItem}
-                        searchQuery={searchQuery}
-                        searchLocations={searchLocations}
-                        filterCategory={filterCategory}
-                    />
-                ))}
-            </>
-        );
-    }
-    
-
-    if(searchLocations && ( godown.name.toLowerCase().includes(searchLocations.toLowerCase()))){
-
-        return(
-            <>
-            {
-               godown.subLocations?.map(subGodown => (
-                <ExpandableSection
-                    key={subGodown.id}
-                    godown={subGodown}
-                    onSelectItem={onSelectItem}
-                    searchQuery={searchQuery}
-                    searchLocations={searchLocations}
-                    filterCategory={filterCategory}
-                />
-            )) 
-            }
-            </>
-        )
-        
-    }
- 
-
-    if (!shouldBeDisplayed) {
+    if (!filteredItems.length && !filteredSubLocations.length) {
         return null;
     }
 
     return (
         <div className="expandable-section text-white font-bold">
-            <div onClick={toggleExpand} className={`expandable-label hover:bg-[#715344]`}>
+            <div
+                onClick={toggleExpand}
+                onDrop={handleDrop}
+                onDragOver={handleDragOver} 
+                className={`expandable-label hover:bg-[#715344]`}
+            >
                 <div className='flex space-x-2'>
                     {isExpanded ? <p>🞃</p> : <p>🞂</p>}<p>{godown.name}</p>
                 </div>
             </div>
 
-            {isExpanded && shouldBeDisplayed && (
+            {isExpanded && (
                 <div className="expandable-content">
-                    {shouldBeDisplayed && filteredSubLocations.length > 0 ? (
-                        filteredSubLocations.map(subGodown => (
-                            <ExpandableSection
-                                key={subGodown.id}
-                                godown={subGodown}
-                                onSelectItem={onSelectItem}
-                                searchQuery={searchQuery}
-                                searchLocations={searchLocations}
-                                filterCategory={filterCategory}
-                            />
-                        ))
-                    ) : filteredItems && filteredItems.length > 0 ? (
+                    {filteredSubLocations.map(subGodown => (
+                        <ExpandableSection
+                            key={subGodown.id}
+                            godown={subGodown}
+                            onSelectItem={onSelectItem}
+                            searchQuery={searchQuery}
+                            searchLocations={searchLocations}
+                            filterCategory={filterCategory}
+                            onDropItem={onDropItem}
+                        />
+                    ))}
+                    {filteredItems.length > 0 && (
                         <div className="items-list">
                             {filteredItems.map(item => (
                                 <div
                                     key={item.item_id}
                                     className="item"
+                                    draggable
+                                    onDragStart={(event) => handleDragStart(event, item)}
                                     onClick={() => onSelectItem(item)}
                                 >
                                     {"🛒"} {item.name}
                                 </div>
                             ))}
                         </div>
-                    ) : (
-                        <div className="no-items">No items found</div>
                     )}
                 </div>
             )}
