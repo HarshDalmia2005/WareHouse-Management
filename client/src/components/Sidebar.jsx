@@ -59,8 +59,8 @@ const Sidebar = ({ onSelectItem }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const locationsResponse = await fetch('https://warehouse-management-vht1.onrender.com/locations');
-                const itemsResponse = await fetch('https://warehouse-management-vht1.onrender.com/items');
+                const locationsResponse = await fetch('https://warehouse-management-backend-qxu0.onrender.com/locations');
+                const itemsResponse = await fetch('https://warehouse-management-backend-qxu0.onrender.com/items');
                 const locationsData = await locationsResponse.json();
                 const itemsData = await itemsResponse.json();
 
