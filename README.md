@@ -20,12 +20,7 @@ It uses a 3-tier architecture:
 3. **Database**: MongoDB is used for storing user and inventory data, offering a scalable NoSQL solution.
 
 ### Video Demostration
-
-<video width="320" height="240" controls>
-  <source src="./VIDEO.webm" type="video/webm">
-  Your browser does not support the video tag.
-</video>
-
+[![Video Title](./mq2.webp)](https://youtu.be/qn-ALcJ4se0)
 
 ---
 
