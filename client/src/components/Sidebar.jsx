@@ -93,7 +93,7 @@ const Sidebar = ({ onSelectItem }) => {
                             placeholder="Search for items"
                             value={searchQuery}
                             onChange={handleSearchChange}
-                            className="search-input p-2 border border-gray-300 rounded-md bg-transparent w-full mb-5"
+                            className="search-input p-2 border text-white border-gray-300 rounded-md bg-transparent w-full mb-5"
                         />
                     </div>
                     <div className="search-bar">
@@ -102,7 +102,7 @@ const Sidebar = ({ onSelectItem }) => {
                             placeholder="Search for locations"
                             value={searchLocations}
                             onChange={handleSearch2Change}
-                            className="search-input p-2 border border-gray-300 rounded-md bg-transparent w-full mb-5"
+                            className="search-input p-2 border text-white border-gray-300 rounded-md bg-transparent w-full mb-5"
                         />
                     </div>
 

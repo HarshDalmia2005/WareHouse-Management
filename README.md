@@ -7,6 +7,8 @@ The **Warehouse Management System (WMS)** is a full-stack web application design
 ### Key Features:
 - **User Registration & Authentication**: Secure sign-up and login system.
 - **Item Details**: View detailed information of items, including attributes such as price, quantity, and status.
+- **Search and Filter** : Search and filter items and locations based on query
+- **Drag and Drop** : Items can be dragged and dropped to other godowns
 
 
 ## How It Works
@@ -16,6 +18,12 @@ It uses a 3-tier architecture:
 2. **Backend**: Developed using Node.js and Express, the backend provides API endpoints for user authentication and inventory management.
 
 3. **Database**: MongoDB is used for storing user and inventory data, offering a scalable NoSQL solution.
+
+### Video Demostration
+
+![Video](./VIDEO.webm)
+
+---
 
 ### Flowchart
 ![Flowchart](./flowchart.png) 
